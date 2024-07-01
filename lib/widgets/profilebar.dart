@@ -38,7 +38,7 @@ class _ProfileBarState extends State<ProfileBar> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Text('Hi,${widget.whichuser.profilename}',style: TextStyle(fontSize: 16),),
+                   Text('Hi,${widget.whichuser.profilename}',style: const TextStyle(fontSize: 16),),
                   Text('Welcome',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,color: ColorPalette.primaryclr),)
                 ],
               )
@@ -59,7 +59,7 @@ class _ProfileBarState extends State<ProfileBar> {
             Positioned(
               right: 0,
               top: 0,
-              child: Icon(Icons.circle,color: widget.isNotien?Color.fromARGB(255, 0, 134, 56):Colors.transparent,size: 20,))
+              child: Icon(Icons.circle,color: widget.isNotien?const Color.fromARGB(255, 0, 134, 56):Colors.transparent,size: 20,))
             ]
           )
         ],

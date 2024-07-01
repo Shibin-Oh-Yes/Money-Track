@@ -19,7 +19,7 @@ class ServiceIcon extends StatelessWidget {
           height: 55,
           child:  Center(child: IconButton(onPressed: (){} ,icon:  Icon(serviceIcon,color:iconClr[900],size: 30,),)),
         ),
-        SizedBox(height: 5,),
+        const SizedBox(height: 5,),
          Text(iconName)
       ],
     );
