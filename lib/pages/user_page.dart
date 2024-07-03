@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:moneytrack/values/colours.dart';
+import 'package:moneytrack/widgets/billset.dart';
 
-class UserPage extends StatelessWidget {
+class UserPage extends StatefulWidget {
+  final String chatname;
   const UserPage({super.key, required this.chatname});
 
-  final String chatname;
+  @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  List deptlistname = ['puttu', 'chaya', 'curry','parippu vada'];
+
+  List<double> deptprice = [16, 10, 15,8];
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,7 @@ class UserPage extends StatelessWidget {
               color: Colors.white,
             )),
         title: Text(
-          chatname,
+          widget.chatname,
           style: const TextStyle(color: Colors.white),
         ),
         actions: [
@@ -38,20 +47,38 @@ class UserPage extends StatelessWidget {
         ],
       ),
       body: Container(
+        
         width: double.maxFinite,
         height: double.maxFinite,
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
+        child: ListView(
           children: [
-            Container(
-              width: double.maxFinite,
-              height: 100,
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(20)),
-            )
+            BillSet(deptprice: deptprice, deptlistname: deptlistname),
+             BillSet(deptprice: deptprice, deptlistname: deptlistname)
           ],
         ),
       ),
+    );
+  }
+}
+
+
+
+class Tiledept extends StatelessWidget {
+  const Tiledept({
+    super.key,
+    required this.name,
+    required this.price,
+  });
+
+  final String name;
+  final double price;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [Text(name), Text("\u{20B9} $price")],
     );
   }
 }
