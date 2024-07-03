@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneytrack/pages/intro.dart';
+import 'package:moneytrack/pages/user_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:MyIntroPage(),
+      home:UserPage(chatname: "Shubu"),
     );
   }
 }

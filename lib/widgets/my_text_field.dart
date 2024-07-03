@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:moneytrack/values/colours.dart';
 
 class MyTextField extends StatefulWidget {
-   MyTextField({super.key, required this.hintxt,this.isob=false,required this.txtFun});
+   const MyTextField({super.key, required this.hintxt,this.isob=false,required this.ctrl});
    
   final String hintxt;
   final bool isob;
-  Function txtFun;
+  final TextEditingController ctrl;
 
   @override
   State<MyTextField> createState() => _MyTextFieldState();
 }
 
 class _MyTextFieldState extends State<MyTextField> {
-  final mycontroller=TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
 
-    widget.txtFun(mycontroller.text);
 
     return  SizedBox(
       child: TextField(
-        controller: mycontroller,
+        controller: widget.ctrl,
         obscureText: widget.isob,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(

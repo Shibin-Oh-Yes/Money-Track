@@ -79,36 +79,28 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
             MyTextField(
               hintxt: 'Full Name',
-              txtFun: (String value) {
-                proname = value;
-              },
+            ctrl: TextEditingController(),
             ),
             const SizedBox(
               height: 15,
             ),
             MyTextField(
               hintxt: 'Email',
-              txtFun: (String value) {
-                temail = value;
-              },
+            ctrl: TextEditingController(),
             ),
             const SizedBox(
               height: 15,
             ),
             MyTextField(
               hintxt: 'Password',
-              txtFun: (String value) {
-                pass = value;
-              },
+             ctrl: TextEditingController(),
             ),
             const SizedBox(
               height: 15,
             ),
             MyTextField(
               hintxt: 'Re-type Password',
-              txtFun: (String value) {
-                repass = value;
-              },
+            ctrl: TextEditingController(),
             ),
             const SizedBox(
               height: 20,

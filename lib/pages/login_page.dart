@@ -46,15 +46,11 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     MyTextField(
                       hintxt: 'Email',
-                      txtFun: (String value) {
-                        email = value;
-                      },
+                      ctrl: TextEditingController(),
                     ),
                     MyTextField(
                       hintxt: 'Password',
-                      txtFun: (value) {
-                        pass = value;
-                      },
+                     ctrl: TextEditingController(),
                       isob: true,
                     ),
                     MyElevatedButton(
@@ -64,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                             log(email);
                             log(pass.toString());
                             Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage(cusormer: true,whichuser: user,)));
-                          };
+                          }
                           
                         })
                   ],
