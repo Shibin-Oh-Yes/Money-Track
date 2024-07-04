@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moneytrack/backend/user_details.dart';
+import 'package:moneytrack/pages/home_page.dart';
 import 'package:moneytrack/pages/intro.dart';
 import 'package:moneytrack/pages/user_page.dart';
 
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:UserPage(chatname: "Shubu"),
+      home: HomePage(cusormer: true, whichuser:UserDetails()),//UserPage(chatname: "Shubu"),
     );
   }
 }

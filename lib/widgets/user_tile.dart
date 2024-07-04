@@ -28,6 +28,7 @@ class UserTile extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     radius: 30,
+                    backgroundImage:AssetImage('asset/image/proimage.jpeg'),
                   ),
                   const SizedBox(
                     width: 10,
