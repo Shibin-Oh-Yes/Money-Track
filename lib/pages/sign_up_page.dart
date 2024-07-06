@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:moneytrack/backend/user_details.dart';
 import 'package:moneytrack/pages/home_page.dart';

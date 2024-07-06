@@ -1,15 +1,17 @@
+
 import 'package:flutter/material.dart';
-import 'package:moneytrack/backend/user_details.dart';
+import 'package:moneytrack/widgets/elevated_button.dart';
 
 class Addpage extends StatefulWidget {
-  const Addpage({super.key});
+  const Addpage({super.key,this.istopay=false});
+
+  final bool istopay;
 
   @override
   State<Addpage> createState() => _AddpageState();
 }
 
 class _AddpageState extends State<Addpage> {
-  ItemList newlist = ItemList();
   final myctlr1 = TextEditingController();
   final myctlr2 = TextEditingController();
   @override
@@ -23,8 +25,12 @@ class _AddpageState extends State<Addpage> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+                Container(
+                  color:Colors.amber,
+                  width: double.maxFinite,
+                  height:MediaQuery.of(context).size.height/5,
+                ),
               SizedBox(
                 width: double.maxFinite,
                 height: 100,
@@ -60,39 +66,37 @@ class _AddpageState extends State<Addpage> {
               ),
               TextButton.icon(
                 onPressed: () {
-                  // newlist.addtolist(myctlr1.text, myctlr2.text);
-                  // setState(() {});
                 },
                 label: const Text('Add to list'),
                 icon: const Icon(Icons.arrow_circle_down_outlined),
               ),
-              SizedBox(
-                  width: double.maxFinite,
-                  height: 25,
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => ListCard(
-                        data: newlist.foodlist[index].name,
-                        data1: newlist.foodlist[index].price),
-                    itemCount: newlist.foodlist.length,
-                  ))
+            
             ],
           ),
         ),
       )),
+      bottomSheet:Padding(padding: const EdgeInsets.only(left: 15,right: 15,bottom: 15),
+      child: MyElevatedButton(elvtext: 'Add', elvfun: (){}),),
     );
   }
 }
 
-class ListCard extends StatelessWidget {
+class ListCard extends StatefulWidget {
   const ListCard({super.key, required this.data, required this.data1});
 
   final String data;
   final String data1;
+
+  @override
+  State<ListCard> createState() => _ListCardState();
+}
+
+class _ListCardState extends State<ListCard> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [Text(data), Text(data1)],
+      children: [Text(widget.data), Text(widget.data1)],
     );
   }
 }

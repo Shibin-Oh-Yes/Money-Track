@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:moneytrack/backend/transaction.dart';
 import 'package:moneytrack/pages/addpage.dart';
 import 'package:moneytrack/values/colours.dart';
-import 'package:moneytrack/widgets/billset.dart';
 
 class UserPage extends StatefulWidget {
   final String chatname;
-  const UserPage({super.key, required this.chatname});
-
+  const UserPage({super.key, required this.chatname, required this.billhis});
+  final List<ItemBill>? billhis;
   @override
   State<UserPage> createState() => _UserPageState();
 }
 
 class _UserPageState extends State<UserPage> {
   final chatcontroller = TextEditingController();
-  List deptlistname = ['puttu', 'chaya', 'curry', 'parippu vada'];
-
-  List<double> deptprice = [16, 10, 15, 8];
 
   @override
   void dispose() {
@@ -23,6 +20,7 @@ class _UserPageState extends State<UserPage> {
     chatcontroller.dispose();
   }
 
+  late List<ItemBill> newlist;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +58,11 @@ class _UserPageState extends State<UserPage> {
         width: double.maxFinite,
         height: double.maxFinite,
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: ListView(
-          children: [
-            BillSet(deptprice: deptprice, deptlistname: deptlistname),
-            BillSet(deptprice: deptprice, deptlistname: deptlistname)
-          ],
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+           ItemBill billchat=widget.billhis[index]; 
+                      return Tiledept(name: billchat.itemname, price: billchat.itemprice);
+          },
         ),
       ),
       bottomNavigationBar: Container(
@@ -79,18 +77,36 @@ class _UserPageState extends State<UserPage> {
               children: [
                 TextButton.icon(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Addpage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Addpage()));
                   },
-                  label: const Text('To get',style: TextStyle(color: Colors.green),),
-                  icon: const Icon(Icons.arrow_downward,color: Colors.green,),
+                  label: const Text(
+                    'To get',
+                    style: TextStyle(color: Colors.green),
+                  ),
+                  icon: const Icon(
+                    Icons.arrow_downward,
+                    color: Colors.green,
+                  ),
                 ),
-                 TextButton.icon(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Addpage()));
-                    },
-                    label: const Text('To pay',style: TextStyle(color: Colors.red)),
-                    icon:const Icon( Icons.arrow_upward,color: Colors.red,),
-               ),
+                TextButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Addpage(
+                                  istopay: true,
+                                )));
+                  },
+                  label:
+                      const Text('To pay', style: TextStyle(color: Colors.red)),
+                  icon: const Icon(
+                    Icons.arrow_upward,
+                    color: Colors.red,
+                  ),
+                ),
               ],
             ),
             // MyTextField(
@@ -102,20 +118,21 @@ class _UserPageState extends State<UserPage> {
               children: [
                 SizedBox(
                   height: 50,
-                  width: (MediaQuery.of(context).size.width)-90,
+                  width: (MediaQuery.of(context).size.width) - 90,
                   child: TextField(
                     decoration: InputDecoration(
-                      hintText:'Type message..',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30)
-                      )
-                    ),
+                        hintText: 'Type message..',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30))),
                   ),
                 ),
-                IconButton.filled(onPressed: (){}, icon: const Icon(Icons.send),style:const ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 14, 131, 102)),
-                  fixedSize: WidgetStatePropertyAll(Size(50, 50))
-                ))
+                IconButton.filled(
+                    onPressed: () {},
+                    icon: const Icon(Icons.send),
+                    style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(
+                            Color.fromARGB(255, 14, 131, 102)),
+                        fixedSize: WidgetStatePropertyAll(Size(50, 50))))
               ],
             )
           ],
@@ -133,7 +150,7 @@ class Tiledept extends StatefulWidget {
   });
 
   final String name;
-  final double price;
+  final String price;
 
   @override
   State<Tiledept> createState() => _TiledeptState();

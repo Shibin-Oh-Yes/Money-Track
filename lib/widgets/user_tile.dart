@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:moneytrack/pages/user_page.dart';
 
 class UserTile extends StatelessWidget {
-  const UserTile({super.key, required this.userName, required this.isIn});
+  const UserTile({super.key, required this.userName, required this.isIn, required this.billhistory});
   final String userName;
   final bool isIn;
+  final List? billhistory;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>UserPage(chatname: userName,)) );
+        //Navigator.push(context, MaterialPageRoute(builder: (context)=>UserPage(chatname: userName,,)) );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),

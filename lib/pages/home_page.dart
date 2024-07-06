@@ -17,7 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   List<UserInfo> curentlist = UserList.currentusers;
+  
   @override
   Widget build(BuildContext context) {
     double listSize = (curentlist.length + 1) * 90;
@@ -44,14 +46,14 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height * .25,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                           begin: Alignment.bottomLeft,
                           end: Alignment.topRight,
                           colors: [
                             ColorPalette.primaryclr,
                             ColorPalette.primaryclr,
                             ColorPalette.primaryclr,
-                            const Color.fromARGB(255, 38, 156, 77)
+                            Color.fromARGB(255, 38, 156, 77)
                           ])),
                   child:  const Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -178,7 +180,9 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (BuildContext context, int index) {
                         var user = curentlist[index];
                         return UserTile(
-                            userName: user.userName, isIn: user.inorout);
+                          //need some history lsit
+                          pos:index,
+                            userName: user.userName, isIn: user.inorout,billhistory:user.userbillhis,);
                       },
                     ),
                   ),
