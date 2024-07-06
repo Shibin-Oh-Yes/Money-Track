@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moneytrack/pages/addpage.dart';
 import 'package:moneytrack/values/colours.dart';
 import 'package:moneytrack/widgets/billset.dart';
 
@@ -70,19 +71,23 @@ class _UserPageState extends State<UserPage> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         width: double.maxFinite,
         height: 110,
-        color: Color.fromARGB(255, 240, 240, 240),
+        color: const Color.fromARGB(255, 240, 240, 240),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const Addpage()));
+                  },
                   label: const Text('To get',style: TextStyle(color: Colors.green),),
                   icon: const Icon(Icons.arrow_downward,color: Colors.green,),
                 ),
                  TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const Addpage()));
+                    },
                     label: const Text('To pay',style: TextStyle(color: Colors.red)),
                     icon:const Icon( Icons.arrow_upward,color: Colors.red,),
                ),

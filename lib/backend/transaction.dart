@@ -1,7 +1,3 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
-
 class UserInfo {
   late final String userName;
   late final double dept;
@@ -20,24 +16,18 @@ class UserList {
   ];
 }
 
-class Bills {
-  late final String item;
-  late final double price;
-//  late final String imgname;
-  Bills({required this.item, required this.price});
+class ItemBill{
+  late String itemname;
+  late String itemprice;
+  ItemBill({required this.itemname, required this.itemprice});
 }
-class CustomerBill{
-  List<Bills> billslist=[];
-  bool ispayd=false;
-  void addToBill(itemname,itemprice) async {
-    Bills newbill= Bills(item: itemname, price: itemprice);
-    billslist.add(newbill);
-  }
-}
-class BillHistory{
-  List<CustomerBill> billhistory=[];
-  void addHistory(value)async{
-    billhistory.add(value);
-  }
 
+class BillHistory{
+  List<ItemBill> itemlist=[];
+  
+}
+
+class UserDeptHistory{
+  List<BillHistory> userdept=[];
+  late double totaldept;
 }
