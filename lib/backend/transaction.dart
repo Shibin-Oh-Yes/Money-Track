@@ -3,6 +3,8 @@ class UserList {
     UserInfo(nameofuser: 'Rashid k p', ismerchant: false),
     UserInfo(nameofuser: 'Suraj m', ismerchant: false),
     UserInfo(nameofuser: 'Vishnu m', ismerchant: false),
+    UserInfo(nameofuser: 'Akhil c', ismerchant: false),
+    UserInfo(nameofuser: 'Abhirag pn', ismerchant: false),
   ];
 }
 

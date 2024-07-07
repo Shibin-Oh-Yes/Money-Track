@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:moneytrack/backend/transaction.dart';
 import 'package:moneytrack/pages/addpage.dart';
@@ -108,8 +110,9 @@ class _UserPageState extends State<UserPage> {
                         MaterialPageRoute(
                             builder: (context) => Addpage(
                                   istopay: true,
-                                  listpass: (value) {
+                                  listpass: (List<ItemBill> value) {
                                     var newitem = BillCards(itemlist: value);
+                                    log(newitem.toString());
                                     widget.thisuser.billhistory?.add(newitem);
                                     Navigator.pop(context);
                                     setState(() {});

@@ -17,7 +17,7 @@ class Addpage extends StatefulWidget {
 class _AddpageState extends State<Addpage> {
   final myctlr1 = TextEditingController();
   final myctlr2 = TextEditingController();
-  List<ItemBill> templist = [ItemBill(itemname: 'Name', itemprice: "price")];
+  List<ItemBill> templist = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
