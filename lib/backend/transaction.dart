@@ -1,33 +1,30 @@
-class UserInfo {
-  late final String userName;
-  late final double dept;
-  late bool inorout;
-  late List<BillHistory>? userbillhis=[];
-  UserInfo({required this.userName, required this.dept, required this.inorout,required this.userbillhis});
-}
-
 class UserList {
   static List<UserInfo> currentusers = [
-    UserInfo(userName: 'Shibin suresh', dept: 230.0, inorout: true,userbillhis: []),
-    UserInfo(userName: 'Akhil c', dept: 230.0, inorout: false,userbillhis: []),
-    UserInfo(userName: 'Abhirag pn', dept: 230.0, inorout: true,userbillhis: []),
-    UserInfo(userName: 'Rashid Kp', dept: 230.0, inorout: false,userbillhis: []),
-    UserInfo(userName: 'Suraj M', dept: 230.0, inorout: true,userbillhis: []),
-    UserInfo(userName: 'Vishnu M', dept: 230.0, inorout: false,userbillhis: []),
+    UserInfo(nameofuser: 'Rashid k p', ismerchant: false),
+    UserInfo(nameofuser: 'Suraj m', ismerchant: false),
+    UserInfo(nameofuser: 'Vishnu m', ismerchant: false),
   ];
 }
 
-class ItemBill{
+class UserInfo {
+  late String nameofuser;
+  late bool ismerchant;
+  bool ispaid = false;
+  late double totalamound = 0;
+  List<BillCards>? billhistory = [];
+  UserInfo({
+    required this.nameofuser,
+    required this.ismerchant,
+  });
+}
+
+class BillCards {
+  List<ItemBill> itemlist = [];
+  BillCards({required this.itemlist});
+}
+
+class ItemBill {
   late String itemname;
   late String itemprice;
   ItemBill({required this.itemname, required this.itemprice});
-}
-
-class BillHistory{
-  List<ItemBill>? itemlist=[]; 
-}
-
-class UserDeptHistory{
-  List<BillHistory>? userdept=[];
-  late double totaldept;
 }

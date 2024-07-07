@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:moneytrack/backend/transaction.dart';
 import 'package:moneytrack/pages/addpage.dart';
 import 'package:moneytrack/values/colours.dart';
+import 'package:moneytrack/widgets/billset.dart';
 
 class UserPage extends StatefulWidget {
-  final String chatname;
-  const UserPage({super.key, required this.chatname, required this.billhis});
-  final List<ItemBill>? billhis;
+  const UserPage({super.key, required this.thisuser});
+
+  final UserInfo thisuser;
+
   @override
   State<UserPage> createState() => _UserPageState();
 }
@@ -36,7 +38,7 @@ class _UserPageState extends State<UserPage> {
               color: Colors.white,
             )),
         title: Text(
-          widget.chatname,
+          widget.thisuser.nameofuser,
           style: const TextStyle(color: Colors.white),
         ),
         actions: [
@@ -59,9 +61,10 @@ class _UserPageState extends State<UserPage> {
         height: double.maxFinite,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: ListView.builder(
+          itemCount: widget.thisuser.billhistory?.length,
           itemBuilder: (context, index) {
-           ItemBill billchat=widget.billhis[index]; 
-                      return Tiledept(name: billchat.itemname, price: billchat.itemprice);
+            return BillSet(
+                itemhis: widget.thisuser.billhistory?[index].itemlist);
           },
         ),
       ),
@@ -80,7 +83,14 @@ class _UserPageState extends State<UserPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Addpage()));
+                            builder: (context) => Addpage(
+                                  listpass: (value) {
+                                     var newitem = BillCards(itemlist: value);
+                                    widget.thisuser.billhistory?.add(newitem);
+                                    Navigator.pop(context);
+                                    setState(() {});
+                                  },
+                                )));
                   },
                   label: const Text(
                     'To get',
@@ -96,8 +106,14 @@ class _UserPageState extends State<UserPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Addpage(
+                            builder: (context) => Addpage(
                                   istopay: true,
+                                  listpass: (value) {
+                                    var newitem = BillCards(itemlist: value);
+                                    widget.thisuser.billhistory?.add(newitem);
+                                    Navigator.pop(context);
+                                    setState(() {});
+                                  },
                                 )));
                   },
                   label:
@@ -138,40 +154,6 @@ class _UserPageState extends State<UserPage> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Tiledept extends StatefulWidget {
-  const Tiledept({
-    super.key,
-    required this.name,
-    required this.price,
-  });
-
-  final String name;
-  final String price;
-
-  @override
-  State<Tiledept> createState() => _TiledeptState();
-}
-
-class _TiledeptState extends State<Tiledept> {
-  int quantity = 1;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(widget.name), Text("Quantity:$quantity")],
-        ),
-        Text("\u{20B9} ${widget.price}")
-      ],
     );
   }
 }

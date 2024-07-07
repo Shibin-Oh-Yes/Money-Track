@@ -179,10 +179,7 @@ class _HomePageState extends State<HomePage> {
                       itemCount: curentlist.length,
                       itemBuilder: (BuildContext context, int index) {
                         var user = curentlist[index];
-                        return UserTile(
-                          //need some history lsit
-                          pos:index,
-                            userName: user.userName, isIn: user.inorout,billhistory:user.userbillhis,);
+                        return UserTile(userInfo: user);
                       },
                     ),
                   ),

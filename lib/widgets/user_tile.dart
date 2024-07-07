@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:moneytrack/backend/transaction.dart';
 import 'package:moneytrack/pages/user_page.dart';
 
 class UserTile extends StatelessWidget {
-  const UserTile({super.key, required this.userName, required this.isIn, required this.billhistory});
-  final String userName;
-  final bool isIn;
-  final List? billhistory;
+  const UserTile({super.key,required this.userInfo});
+
+  final UserInfo userInfo;
+  
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        //Navigator.push(context, MaterialPageRoute(builder: (context)=>UserPage(chatname: userName,,)) );
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>UserPage(thisuser: userInfo)) );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
@@ -39,14 +40,14 @@ class UserTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        userName,
+                        userInfo.nameofuser,
                         style: const TextStyle(
                           fontSize: 18,
                         ),
                       ),
                       Text(
-                        isIn ? "Send Money" : "Cashout",
-                        style: TextStyle(color: isIn ? Colors.green : Colors.red),
+                       (userInfo.totalamound>0?"To get":"To pay"),
+                        style: TextStyle(color: whichclr(userInfo.totalamound)),
                       )
                     ],
                   )
@@ -57,7 +58,7 @@ class UserTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                cashForTile('24.0', isIn),
+                cashForTile(userInfo.totalamound),
                 const Text('21/02/2024',)
               ],
             )
@@ -70,11 +71,28 @@ class UserTile extends StatelessWidget {
 
 
 
-Widget cashForTile(String value,bool isInc){
-  if(isInc==true ){
+Widget cashForTile(double value){
+  if(value>0){
     return Text("+ \u{20B9} $value",style: const TextStyle(color: Colors.green),);
   }
   else {
-    return Text("- \u{20B9} $value",style: const TextStyle(color: Colors.red),);
+    if(value<0){
+      return Text("- \u{20B9} $value",style: const TextStyle(color: Colors.red),);
+    }
+    else{
+      return Text("\u{20B9} $value",style: const TextStyle(color: Colors.grey),);
+    }
+  }
+}
+
+Color whichclr(double value){
+  if(value>0){
+    return Colors.green;
+  }
+  else if(value<0){
+    return Colors.red;
+  }
+  else{
+    return Colors.grey;
   }
 }

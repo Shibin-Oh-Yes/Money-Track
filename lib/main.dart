@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moneytrack/backend/user_details.dart';
 import 'package:moneytrack/pages/home_page.dart';
-import 'package:moneytrack/pages/intro.dart';
-import 'package:moneytrack/pages/user_page.dart';
-
 void main() {
   runApp(const MyApp());
 }
