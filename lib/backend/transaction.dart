@@ -1,4 +1,6 @@
-class UserList {
+import 'package:flutter/material.dart';
+
+class UserList extends ChangeNotifier {
   static List<UserInfo> currentusers = [
     UserInfo(nameofuser: 'Rashid k p', ismerchant: false),
     UserInfo(nameofuser: 'Suraj m', ismerchant: false),
@@ -8,7 +10,7 @@ class UserList {
   ];
 }
 
-class UserInfo {
+class UserInfo extends ChangeNotifier {
   late String nameofuser;
   late bool ismerchant;
   bool ispaid = false;

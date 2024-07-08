@@ -87,7 +87,7 @@ class _UserPageState extends State<UserPage> {
                         MaterialPageRoute(
                             builder: (context) => Addpage(
                                   listpass: (value) {
-                                     var newitem = BillCards(itemlist: value);
+                                    var newitem = BillCards(itemlist: value);
                                     widget.thisuser.billhistory?.add(newitem);
                                     Navigator.pop(context);
                                     setState(() {});
@@ -113,8 +113,7 @@ class _UserPageState extends State<UserPage> {
                                   listpass: (List<ItemBill> value) {
                                     var newitem = BillCards(itemlist: value);
                                     log(newitem.toString());
-                                    widget.thisuser.billhistory?.add(newitem);
-                                    Navigator.pop(context);
+                                    widget.thisuser.billhistory!.add(newitem);
                                     setState(() {});
                                   },
                                 )));

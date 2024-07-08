@@ -189,6 +189,12 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       )),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorPalette.primaryclr,
+        child: const Icon(Icons.add,color: Colors.white,size: 30,),
+        onPressed: (){
+
+      }),
     );
   }
 }

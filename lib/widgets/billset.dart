@@ -20,7 +20,7 @@ class BillSet extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(15),
           width: double.maxFinite,
-          height: 35*itemhis!.length.toDouble(),
+          height: 55*itemhis!.length.toDouble(),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
           child: ListView.separated(itemBuilder: (context, index){
