@@ -111,8 +111,11 @@ class _UserPageState extends State<UserPage> {
                             builder: (context) => Addpage(
                                   istopay: true,
                                   listpass: (List<ItemBill> value) {
+                                  
+                                    
+
                                     var newitem = BillCards(itemlist: value);
-                                    log(newitem.toString());
+                                    log(newitem.itemlist.toString());
                                     widget.thisuser.billhistory!.add(newitem);
                                     setState(() {});
                                   },

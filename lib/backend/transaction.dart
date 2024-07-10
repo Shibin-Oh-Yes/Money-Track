@@ -15,6 +15,7 @@ class UserInfo extends ChangeNotifier {
   late bool ismerchant;
   bool ispaid = false;
   late double totalamound = 0;
+  List<ItemBill>? listofitem=[];
   List<BillCards>? billhistory = [];
   UserInfo({
     required this.nameofuser,

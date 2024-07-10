@@ -3,11 +3,12 @@ import 'package:moneytrack/backend/transaction.dart';
 
 class BillSet extends StatelessWidget {
   const BillSet({
-    super.key, required this.itemhis,
+    super.key,
+    required this.itemhis,
   });
 
   final List<ItemBill>? itemhis;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,20 +21,23 @@ class BillSet extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(15),
           width: double.maxFinite,
-          height: 55*itemhis!.length.toDouble(),
+          height: 45 * itemhis!.length.toDouble(),
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(20)),
-          child: ListView.separated(itemBuilder: (context, index){
-            ItemBill food=itemhis![index];
-            return Tiledept(name: food.itemname, price:food.itemprice);
-          } , separatorBuilder: (context, index) => const Divider(), itemCount:1),
+          child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Tiledept(
+                    name: itemhis![index].itemname,
+                    price: itemhis![index].itemprice);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+              itemCount: itemhis!.length),
         ),
       ],
     );
   }
 }
-
-
 
 class Tiledept extends StatefulWidget {
   const Tiledept({
@@ -50,21 +54,12 @@ class Tiledept extends StatefulWidget {
 }
 
 class _TiledeptState extends State<Tiledept> {
-  int quantity = 1;
-
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(widget.name), Text("Quantity:$quantity")],
-        ),
-        Text("\u{20B9} ${widget.price}")
-      ],
+      children: [Text(widget.name), Text("\u{20B9} ${widget.price}")],
     );
   }
 }
